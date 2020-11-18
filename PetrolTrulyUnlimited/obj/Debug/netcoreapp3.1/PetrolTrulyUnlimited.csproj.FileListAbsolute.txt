@@ -1,0 +1,13 @@
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.exe
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.deps.json
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.runtimeconfig.json
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.runtimeconfig.dev.json
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.dll
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\bin\Debug\netcoreapp3.1\PetrolTrulyUnlimited.pdb
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.csprojAssemblyReference.cache
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.AssemblyInfoInputs.cache
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.AssemblyInfo.cs
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.csproj.CoreCompileInputs.cache
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.dll
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.pdb
+C:\Users\Home\source\repos\PetrolTrulyUnlimited\PetrolTrulyUnlimited\obj\Debug\netcoreapp3.1\PetrolTrulyUnlimited.genruntimeconfig.cache
