@@ -8,20 +8,22 @@ namespace PetrolTrulyUnlimited
     class Pump
     {
         private int _id;
-        private int _totalLitresDispensed; // 1.5 litres/second
-        private int _vehicles;
-        private int _comission;
-        public bool isAvailable = true;
+        private int pumpsCounter;
+        private double _totalLitresDispensed;
+        private double _comission;
+
+        public Vehicle currentVehicle = null;
+        public string fuelType;
 
         Random rand = new Random();
 
 
-        public Pump(int id)
+        public Pump(int id, string fuelType)
         {
             this._id = id;
             this._totalLitresDispensed = 0;
-            this._vehicles = 0;
             this._comission = 0;
+            this.fuelType = fuelType;
         }
 
         public void addReceipt()
@@ -29,20 +31,29 @@ namespace PetrolTrulyUnlimited
             Console.WriteLine("[Vehicle type, Number of litres and Pump number]");
         }
 
-        public void fillingVehicle(Vehicle vehicle)
+        public bool isAvailable()
         {
-            int time = rand.Next(17000, 19000);
-            Timer fillingTimer = new Timer(time);
-            fillingTimer.Elapsed += OnTimedEvent;
-            fillingTimer.Enabled = true;
-            fillingTimer.AutoReset = false;
-            fillingTimer.Enabled = true;
+            // returns TRUE if currentVehicle is NULL, meaning available
+            // returns FALSE if currentVehicle is NOT NULL, meaning busy
+            return currentVehicle == null;
         }
 
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        public void AssignVehicle(Vehicle v)
         {
-            this._vehicles += 1;
-            Console.WriteLine(this._vehicles);
+            currentVehicle = v;
+
+            Timer timer = new Timer();
+            timer.Interval = v.fuelTime;
+            timer.AutoReset = false; // don't repeat
+            timer.Elapsed += releaseVehicle;
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+        public void releaseVehicle(object sender, ElapsedEventArgs e)
+        {
+            currentVehicle = null;
+            // record transaction
         }
     }
 }
