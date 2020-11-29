@@ -36,7 +36,7 @@ namespace PetrolTrulyUnlimited
         private void startCountdown()
         {
             Timer timer = new Timer();
-            timer.Interval = 2000;
+            timer.Interval = rnd.Next(1000, 2000);
             timer.AutoReset = false; // don't repeat
             timer.Elapsed += leaveQueue;
             timer.Enabled = true;

@@ -48,7 +48,13 @@ namespace PetrolTrulyUnlimited
         {
             // Fueltime is a random number between 17000 and 19000 miliseconds. 
             Vehicle v = new Vehicle(rnd.Next(17000, 19000));
-            vehicles.Add(v);
+            if (vehicles.Count <= 5)
+            {
+                vehicles.Add(v);
+            } else
+            {
+                leftVehiclesCounter++;
+            }
         }
         private static void createPumps()
         {

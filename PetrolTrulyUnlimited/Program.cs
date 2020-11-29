@@ -11,7 +11,7 @@ namespace PetrolTrulyUnlimited
             PetrolStation.createStation();
 
             Timer timer = new Timer();
-            timer.Interval = 2000;
+            timer.Interval = 1000;
             timer.AutoReset = true; //  every 2 seconds update console view/display
             timer.Elapsed += RunProgramLoop;
             timer.Enabled = true;
