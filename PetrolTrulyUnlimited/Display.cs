@@ -8,8 +8,10 @@ namespace PetrolTrulyUnlimited
 	{
 		public static void displayCounters()
         {
-
-        }
+			Console.WriteLine("Diesel: {0:N2} L | LPG: {1:N2} L | Unleaded: {2:N2} L | Unknown: {3:N2} L", 
+				PetrolStation.dieselLitersCounter, PetrolStation.lpgLitersCounter,
+				PetrolStation.unleadedLitersCounter, PetrolStation.unknownLitersCounter);
+		}
 		public static void drawVehicles()
 		{
 			Vehicle vehicle;

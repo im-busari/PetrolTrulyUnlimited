@@ -41,7 +41,7 @@ namespace PetrolTrulyUnlimited
         public void AssignVehicle(Vehicle v, ref double litresCounter)
         {
             currentVehicle = v;
-            litresCounter += 1.5 * v.fuelTime;
+            litresCounter += 1.5 * (v.fuelTime / 1000);
 
             Timer timer = new Timer();
             timer.Interval = v.fuelTime;

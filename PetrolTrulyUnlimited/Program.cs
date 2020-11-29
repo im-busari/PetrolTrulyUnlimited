@@ -24,10 +24,14 @@ namespace PetrolTrulyUnlimited
         static void RunProgramLoop(object sender, ElapsedEventArgs e)
         {
             Console.Clear();
-            Display.DrawVehicles();
+            Console.WriteLine();
+            Display.displayCounters();
             Console.WriteLine();
             Console.WriteLine();
-            Display.DrawPumps();
+            Display.drawVehicles();
+            Console.WriteLine();
+            Console.WriteLine();
+            Display.drawPumps();
             PetrolStation.AssignVehicleToPump();
         }
         /*static void Main(string[] args)
