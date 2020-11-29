@@ -18,6 +18,8 @@ namespace PetrolTrulyUnlimited
         //  A random number that we will use when creating a new vehicle to decide fuel type and brand.
         Random rnd = new Random();
 
+        //  If a vehicle is not served within 1500 miliseconds it will leave the queue.
+        //  We should keep a track of how many clients/vehicles have we lost.
         public Vehicle(double fuelTime)
         {
             this._id = _nextID++;

@@ -25,7 +25,7 @@ namespace PetrolTrulyUnlimited
             vehicles = new List<Vehicle>();
 
             timer = new Timer();
-            timer.Interval = 1500;
+            timer.Interval = rnd.Next(1500, 2200);
             timer.AutoReset = true;
             timer.Elapsed += createVehicle;
             timer.Enabled = true;

@@ -15,7 +15,7 @@ namespace PetrolTrulyUnlimited
 			for (int i = 0; i < PetrolStation.vehicles.Count; i++)
 			{
 				vehicle = PetrolStation.vehicles[i];
-				Console.Write("#{0} Fuel Type: {1} | ", vehicle.id, vehicle.fuelType);
+				Console.Write("#{0} ({1}) - Fuel Type: {2} | ", vehicle.id, vehicle.brand, vehicle.fuelType);
 			}
 		}
 

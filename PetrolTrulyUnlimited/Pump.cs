@@ -9,21 +9,20 @@ namespace PetrolTrulyUnlimited
     {
         private int _id;
         private int pumpsCounter = 0;
-        private double _totalLitresDispensed;
+        private double _totalLitresDispensed;  // Seperate for each fuel type --> make an array
         private double _comission;
 
         public Vehicle currentVehicle = null;
-        public string fuelType;
 
         Random rand = new Random();
 
 
+        //  Each pump has the 3 fuel types.
         public Pump(string fuelType)
         {
             this._id = pumpsCounter++;
             this._totalLitresDispensed = 0;
             this._comission = 0;
-            this.fuelType = fuelType;
         }
 
         public void addReceipt()
