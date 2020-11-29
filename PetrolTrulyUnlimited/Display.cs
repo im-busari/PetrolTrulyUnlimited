@@ -6,7 +6,11 @@ namespace PetrolTrulyUnlimited
 {
 	public class Display
 	{
-		public static void DrawVehicles()
+		public static void displayCounters()
+        {
+
+        }
+		public static void drawVehicles()
 		{
 			Vehicle vehicle;
 
@@ -19,7 +23,7 @@ namespace PetrolTrulyUnlimited
 			}
 		}
 
-		public static void DrawPumps()
+		public static void drawPumps()
 		{
 			Pump pump;
 

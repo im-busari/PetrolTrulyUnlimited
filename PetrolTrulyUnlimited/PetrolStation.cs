@@ -9,7 +9,16 @@ namespace PetrolTrulyUnlimited
         private static Timer timer;
         public static List<Vehicle> vehicles;
         public static List<Pump> pumps;
-        
+
+        //  Counters for the total amount of litres dispensed from all pumps on the station
+        public static double dieselLitersCounter = 0;  // 2.53 pounds per liter
+        public static double unleadedLitersCounter = 0;  // 2.10 pounds per liter
+        public static double lpgLitersCounter = 0; //  2.00 pounds per liter
+        public static double unknownLitersCounter = 0;  //  1.50 pounds per liter 
+
+        public static int servicedVehiclesCounter = 0;
+        public static int leftVehiclesCounter = 0;
+
         public static Random rnd = new Random();
 
         //  Create/Initialize Petrol Station Unlimited.
@@ -42,32 +51,46 @@ namespace PetrolTrulyUnlimited
         {
             pumps = new List<Pump>();
 
-            Pump p;
+            Pump pump;
 
             for (int i = 0; i < 9; i++)
             {
-                p = new Pump("diesel");
-                pumps.Add(p);
+                pump = new Pump();
+                pumps.Add(pump);
             }
         }
         public static void AssignVehicleToPump()
         {
-            Vehicle v;
-            Pump p;
+            Vehicle vehicle;
+            Pump pump;
 
             if (vehicles.Count == 0) { return; }
 
             for (int i = 0; i < 9; i++)
             {
-                p = pumps[i];
+                pump = pumps[i];
 
-                // note: needs more logic here, don't just assign to first
-                // available pump, but check for the last available pump
-                if (p.isAvailable())
+                if (pump.isAvailable())
                 {
-                    v = vehicles[0]; // get first vehicle
+                    vehicle = vehicles[0]; // get first vehicle
                     vehicles.RemoveAt(0); // remove vehicles from queue
-                    p.AssignVehicle(v); // assign it to the pump
+
+                    // assign it to the pump with the relevant counter reference
+                    switch (vehicle.fuelType)
+                    {
+                        case "Unleaded":
+                            pump.AssignVehicle(vehicle, ref unleadedLitersCounter);
+                            break;
+                        case "Diesel":
+                            pump.AssignVehicle(vehicle, ref dieselLitersCounter);
+                            break;
+                        case "LPG":
+                            pump.AssignVehicle(vehicle, ref lpgLitersCounter);
+                            break;
+                        default:
+                            pump.AssignVehicle(vehicle, ref unknownLitersCounter);
+                            break;
+                    }
                 }
 
                 if (vehicles.Count == 0) { break; }

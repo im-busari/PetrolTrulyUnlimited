@@ -17,8 +17,8 @@ namespace PetrolTrulyUnlimited
         Random rand = new Random();
 
 
-        //  Each pump has the 3 fuel types.
-        public Pump(string fuelType)
+        //  All pumps contain all types of fuel.
+        public Pump()
         {
             this._id = pumpsCounter++;
             this._totalLitresDispensed = 0;
@@ -38,10 +38,10 @@ namespace PetrolTrulyUnlimited
         }
 
         //  TODO: I can use reference variable to keep a track on the totalLitresDispensed from all of the pumps
-        public void AssignVehicle(Vehicle v)
+        public void AssignVehicle(Vehicle v, ref double litresCounter)
         {
             currentVehicle = v;
-            this._totalLitresDispensed += 1.5 * v.fuelTime;
+            litresCounter += 1.5 * v.fuelTime;
 
             Timer timer = new Timer();
             timer.Interval = v.fuelTime;
