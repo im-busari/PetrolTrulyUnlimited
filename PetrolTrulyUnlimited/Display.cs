@@ -14,6 +14,9 @@ namespace PetrolTrulyUnlimited
 
 			Console.WriteLine("Served vehicles: {0}", PetrolStation.servicedVehiclesCounter);
 			Console.WriteLine("Vehicles that left: {0}", PetrolStation.leftVehiclesCounter);
+
+			Console.WriteLine("Income: {0:N2}", PetrolStation.income);
+			Console.WriteLine("Commission: {0:N2}", PetrolStation.commission);
 		}
 		public static void showVehicles()
 		{

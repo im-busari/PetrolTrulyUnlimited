@@ -19,6 +19,8 @@ namespace PetrolTrulyUnlimited
 
         public static int servicedVehiclesCounter = 0;
         public static int leftVehiclesCounter = 0;
+        public static double income = 0;
+        public static double commission = (1 * income) / 100;
 
         public static Random rnd = new Random();
 
@@ -106,7 +108,12 @@ namespace PetrolTrulyUnlimited
                 default:
                     unknownLitersCounter += liters;
                     break;
-            }
+            };
+
+            income = dieselLitersCounter * 2.53 + unleadedLitersCounter * 2.10 + lpgLitersCounter * 2;
+            commission = (1 * income) / 100;
         }
+
+
     }
 }
