@@ -8,7 +8,7 @@ namespace PetrolTrulyUnlimited
     class Pump
     {
         private int _id;
-        private int pumpsCounter;
+        private int pumpsCounter = 0;
         private double _totalLitresDispensed;
         private double _comission;
 
@@ -18,9 +18,9 @@ namespace PetrolTrulyUnlimited
         Random rand = new Random();
 
 
-        public Pump(int id, string fuelType)
+        public Pump(string fuelType)
         {
-            this._id = id;
+            this._id = pumpsCounter++;
             this._totalLitresDispensed = 0;
             this._comission = 0;
             this.fuelType = fuelType;
@@ -38,9 +38,11 @@ namespace PetrolTrulyUnlimited
             return currentVehicle == null;
         }
 
+        //  TODO: I can use reference variable to keep a track on the totalLitresDispensed from all of the pumps
         public void AssignVehicle(Vehicle v)
         {
             currentVehicle = v;
+            this._totalLitresDispensed += 1.5 * v.fuelTime;
 
             Timer timer = new Timer();
             timer.Interval = v.fuelTime;
