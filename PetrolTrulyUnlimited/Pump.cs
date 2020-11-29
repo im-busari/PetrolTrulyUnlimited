@@ -8,7 +8,6 @@ namespace PetrolTrulyUnlimited
     class Pump
     {
         private int _id;
-        private int pumpsCounter = 0;
         private double _totalLitresDispensed;  // Seperate for each fuel type --> make an array
         private double _comission;
 
@@ -18,16 +17,11 @@ namespace PetrolTrulyUnlimited
 
 
         //  All pumps contain all types of fuel.
-        public Pump()
+        public Pump(int id)
         {
-            this._id = pumpsCounter++;
+            this._id = id + 1;
             this._totalLitresDispensed = 0;
             this._comission = 0;
-        }
-
-        public void addReceipt()
-        {
-            Console.WriteLine("[Vehicle type, Number of litres and Pump number]");
         }
 
         public bool isAvailable()
@@ -37,11 +31,11 @@ namespace PetrolTrulyUnlimited
             return currentVehicle == null;
         }
 
-        //  TODO: I can use reference variable to keep a track on the totalLitresDispensed from all of the pumps
-        public void AssignVehicle(Vehicle v, ref double litresCounter)
+        public void assignVehicle(Vehicle v, ref double litresCounter)
         {
             currentVehicle = v;
-            litresCounter += 1.5 * (v.fuelTime / 1000);
+            this._totalLitresDispensed = 1.5 * (v.fuelTime / 1000);
+            litresCounter += this._totalLitresDispensed;
 
             Timer timer = new Timer();
             timer.Interval = v.fuelTime;
@@ -53,8 +47,10 @@ namespace PetrolTrulyUnlimited
 
         public void releaseVehicle(object sender, ElapsedEventArgs e)
         {
-            currentVehicle = null;
             // record transaction
+            Receipt receipt = new Receipt(currentVehicle, this._totalLitresDispensed, this._id);
+            PetrolStation.storeReceipts(receipt);
+            currentVehicle = null;
         }
     }
 }

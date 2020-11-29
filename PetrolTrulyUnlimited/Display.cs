@@ -6,13 +6,13 @@ namespace PetrolTrulyUnlimited
 {
 	public class Display
 	{
-		public static void displayCounters()
+		public static void showCounters()
         {
 			Console.WriteLine("Diesel: {0:N2} L | LPG: {1:N2} L | Unleaded: {2:N2} L | Unknown: {3:N2} L", 
 				PetrolStation.dieselLitersCounter, PetrolStation.lpgLitersCounter,
 				PetrolStation.unleadedLitersCounter, PetrolStation.unknownLitersCounter);
 		}
-		public static void drawVehicles()
+		public static void showVehicles()
 		{
 			Vehicle vehicle;
 
@@ -25,7 +25,7 @@ namespace PetrolTrulyUnlimited
 			}
 		}
 
-		public static void drawPumps()
+		public static void showPumps()
 		{
 			Pump pump;
 
@@ -50,6 +50,19 @@ namespace PetrolTrulyUnlimited
 				// 6 % 3 => 0 (6 / 3 = 2 R=0)
 				// ...
 				if (i % 3 == 2) { Console.WriteLine(); }
+			}
+		}
+
+		public static void showReceipts()
+        {
+			Receipt receipt;
+
+			Console.WriteLine("Receipts: ");
+
+			for (int i = 0; i < PetrolStation.receipts.Count; i++)
+			{
+				receipt = PetrolStation.receipts[i];
+				Console.Write("Vehicle Brand: {0}, Litres: {1:N2}, Pump No: {2}	| ", receipt.vehicleBrand, receipt.litres, receipt.pumpId);
 			}
 		}
 	}

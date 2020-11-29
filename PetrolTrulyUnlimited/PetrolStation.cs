@@ -9,6 +9,7 @@ namespace PetrolTrulyUnlimited
         private static Timer timer;
         public static List<Vehicle> vehicles;
         public static List<Pump> pumps;
+        public static List<Receipt> receipts = new List<Receipt>();
 
         //  Counters for the total amount of litres dispensed from all pumps on the station
         public static double dieselLitersCounter = 0;  // 2.53 pounds per liter
@@ -55,11 +56,11 @@ namespace PetrolTrulyUnlimited
 
             for (int i = 0; i < 9; i++)
             {
-                pump = new Pump();
+                pump = new Pump(i);
                 pumps.Add(pump);
             }
         }
-        public static void AssignVehicleToPump()
+        public static void assignVehicleToPump()
         {
             Vehicle vehicle;
             Pump pump;
@@ -79,16 +80,16 @@ namespace PetrolTrulyUnlimited
                     switch (vehicle.fuelType)
                     {
                         case "Unleaded":
-                            pump.AssignVehicle(vehicle, ref unleadedLitersCounter);
+                            pump.assignVehicle(vehicle, ref unleadedLitersCounter);
                             break;
                         case "Diesel":
-                            pump.AssignVehicle(vehicle, ref dieselLitersCounter);
+                            pump.assignVehicle(vehicle, ref dieselLitersCounter);
                             break;
                         case "LPG":
-                            pump.AssignVehicle(vehicle, ref lpgLitersCounter);
+                            pump.assignVehicle(vehicle, ref lpgLitersCounter);
                             break;
                         default:
-                            pump.AssignVehicle(vehicle, ref unknownLitersCounter);
+                            pump.assignVehicle(vehicle, ref unknownLitersCounter);
                             break;
                     }
                 }
@@ -96,6 +97,11 @@ namespace PetrolTrulyUnlimited
                 if (vehicles.Count == 0) { break; }
 
             }
+        }
+
+        public static void storeReceipts(Receipt receipt)
+        {
+            receipts.Add(receipt);
         }
     }
 }
