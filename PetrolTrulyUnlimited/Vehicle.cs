@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 
 namespace PetrolTrulyUnlimited
 {
@@ -15,6 +16,8 @@ namespace PetrolTrulyUnlimited
         private string[] brandsOptions = { "Car", "Van", "HGV" };
         private string[] fuelOptions = { "Unleaded", "Diesel", "LPG" };
 
+        public bool fuelling = false;
+
         //  A random number that we will use when creating a new vehicle to decide fuel type and brand.
         Random rnd = new Random();
 
@@ -26,6 +29,28 @@ namespace PetrolTrulyUnlimited
             this._brand = brandsOptions[rnd.Next(brandsOptions.Length)];
             this._fuelType = fuelOptions[rnd.Next(fuelOptions.Length)];
             this._fuelTime = fuelTime;
+
+            startCountdown();
+        }
+
+        private void startCountdown()
+        {
+            Timer timer = new Timer();
+            timer.Interval = 2000;
+            timer.AutoReset = false; // don't repeat
+            timer.Elapsed += leaveQueue;
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+        public void leaveQueue(object sender, ElapsedEventArgs e)
+        {
+            //  Check if the vehicle is still waiting
+            if(!this.fuelling)
+            {
+                PetrolStation.vehicles.RemoveAll(x => x.id == this._id);
+                PetrolStation.leftVehiclesCounter++;
+            }
         }
 
         public int id { get => this._id; }

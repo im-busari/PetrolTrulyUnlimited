@@ -31,25 +31,27 @@ namespace PetrolTrulyUnlimited
             return currentVehicle == null;
         }
 
-        public void assignVehicle(Vehicle v, ref double litresCounter)
+        public void assignVehicle(Vehicle v)
         {
             currentVehicle = v;
+            v.fuelling = true;  // update vehicle fuelling status
             this._totalLitresDispensed = 1.5 * (v.fuelTime / 1000);
-            litresCounter += this._totalLitresDispensed;
 
             Timer timer = new Timer();
             timer.Interval = v.fuelTime;
             timer.AutoReset = false; // don't repeat
-            timer.Elapsed += releaseVehicle;
+            timer.Elapsed += (sender, e) => { releaseVehicle(); };
             timer.Enabled = true;
             timer.Start();
         }
 
-        public void releaseVehicle(object sender, ElapsedEventArgs e)
+        public void releaseVehicle()
         {
-            // record transaction
+            // record transaction, update the counters for the dispensed liters, and remove car from pump
             Receipt receipt = new Receipt(currentVehicle, this._totalLitresDispensed, this._id);
             PetrolStation.storeReceipts(receipt);
+            PetrolStation.servicedVehiclesCounter++;
+            PetrolStation.updateLitersCounters(currentVehicle, this._totalLitresDispensed);
             currentVehicle = null;
         }
     }

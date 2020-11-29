@@ -76,22 +76,8 @@ namespace PetrolTrulyUnlimited
                     vehicle = vehicles[0]; // get first vehicle
                     vehicles.RemoveAt(0); // remove vehicles from queue
 
-                    // assign it to the pump with the relevant counter reference
-                    switch (vehicle.fuelType)
-                    {
-                        case "Unleaded":
-                            pump.assignVehicle(vehicle, ref unleadedLitersCounter);
-                            break;
-                        case "Diesel":
-                            pump.assignVehicle(vehicle, ref dieselLitersCounter);
-                            break;
-                        case "LPG":
-                            pump.assignVehicle(vehicle, ref lpgLitersCounter);
-                            break;
-                        default:
-                            pump.assignVehicle(vehicle, ref unknownLitersCounter);
-                            break;
-                    }
+                    // assign it to the pump
+                    pump.assignVehicle(vehicle);
                 }
 
                 if (vehicles.Count == 0) { break; }
@@ -102,6 +88,25 @@ namespace PetrolTrulyUnlimited
         public static void storeReceipts(Receipt receipt)
         {
             receipts.Add(receipt);
+        }
+
+        public static void updateLitersCounters(Vehicle vehicle, double liters)
+        {
+            switch (vehicle.fuelType)
+            {
+                case "Unleaded":
+                    unleadedLitersCounter += liters;
+                    break;
+                case "Diesel":
+                    dieselLitersCounter += liters;
+                    break;
+                case "LPG":
+                    lpgLitersCounter += liters;
+                    break;
+                default:
+                    unknownLitersCounter += liters;
+                    break;
+            }
         }
     }
 }
