@@ -10,6 +10,7 @@ namespace PetrolTrulyUnlimited
         private int _id;
         private string _brand;
         private string _fuelType;
+        private double _tank;
         private static int _nextID = 0; // to ensure we will not have 2 cars with the same IDs.
         private double _fuelTime;
 
@@ -27,9 +28,19 @@ namespace PetrolTrulyUnlimited
         {
             this._id = _nextID++;
             this._brand = brandsOptions[rnd.Next(brandsOptions.Length)];
-            this._fuelType = fuelOptions[rnd.Next(fuelOptions.Length)];
-            this._fuelTime = fuelTime;
 
+            switch(this._brand)
+            {
+                case ("Car"):
+                    setupCar();
+                    break;
+                case ("Van"):
+                    setupVan();
+                    break;
+                case ("HGV"):
+                    setupHGV();
+                    break;
+            }
             startCountdown();
         }
 
@@ -41,6 +52,27 @@ namespace PetrolTrulyUnlimited
             timer.Elapsed += leaveQueue;
             timer.Enabled = true;
             timer.Start();
+        }
+        private void setupCar()
+        {
+            // maximum 40 liters
+            this._tank = rnd.Next(1, 10);
+            this._fuelTime = ((40 - this._tank) / 1.5) * 1000;
+            this._fuelType = fuelOptions[rnd.Next(fuelOptions.Length)];
+        }
+        private void setupVan()
+        {
+            // maximum 80 liters
+            this._tank = rnd.Next(1, 20);
+            this._fuelTime = ((80 - this._tank) / 1.5) * 1000;
+            this._fuelType = fuelOptions[rnd.Next(1, 2)];
+        }
+        private void setupHGV()
+        {
+            // maximum 150 liters
+            this._tank = rnd.Next(1, 37);
+            this._fuelTime = ((150 - this._tank) / 1.5) * 1000;
+            this._fuelType = fuelOptions[1];
         }
 
         public void leaveQueue(object sender, ElapsedEventArgs e)
@@ -57,5 +89,6 @@ namespace PetrolTrulyUnlimited
         public string brand { get => this._brand; }
         public string fuelType { get => this._fuelType; }
         public double fuelTime { get => this._fuelTime; }
+        public double tank { get => this._tank; }
     }
 }

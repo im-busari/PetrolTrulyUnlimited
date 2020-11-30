@@ -27,7 +27,8 @@ namespace PetrolTrulyUnlimited
 			for (int i = 0; i < PetrolStation.vehicles.Count; i++)
 			{
 				vehicle = PetrolStation.vehicles[i];
-				Console.Write("#{0} ({1}) - Fuel Type: {2} | ", vehicle.id, vehicle.brand, vehicle.fuelType);
+				Console.Write("#{0} ({1}) - Fuel Type: {2}, Tank: {3}, Fuel time: {4:N2}s | ", 
+					vehicle.id, vehicle.brand, vehicle.fuelType, vehicle.tank, vehicle.fuelTime / 1000);
 			}
 		}
 
@@ -64,11 +65,13 @@ namespace PetrolTrulyUnlimited
 			Receipt receipt;
 
 			Console.WriteLine("Receipts: ");
+			Console.WriteLine();
+			Console.WriteLine("\x1B[4m{0, -8} | {1,6:N2} | {2,5}\x1B[0m", "Vehicle", "Liters", "Pump");
 
 			for (int i = 0; i < PetrolStation.receipts.Count; i++)
 			{
 				receipt = PetrolStation.receipts[i];
-				Console.Write("Vehicle Brand: {0}, Litres: {1:N2}, Pump No: {2}	| ", receipt.vehicleBrand, receipt.litres, receipt.pumpId);
+				Console.WriteLine("{0,-8} | {1,6:N2} | {2,5}", receipt.vehicleBrand, receipt.litres, receipt.pumpId);
 			}
 		}
 	}

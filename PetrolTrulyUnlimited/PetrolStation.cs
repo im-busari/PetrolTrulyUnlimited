@@ -75,7 +75,45 @@ namespace PetrolTrulyUnlimited
 
             if (vehicles.Count == 0) { return; }
 
-            for (int i = 0; i < 9; i++)
+            int numberOfColumns = 3;
+            int numberOfRows = 3;
+            int index;
+
+            for (int i = 0; i < numberOfRows; i++)
+            {
+                for (int j = 0; j < numberOfColumns; j++)
+                {
+                    index = i * numberOfColumns + j;
+                    pump = pumps[index];
+                    
+                    if(j == numberOfColumns - 1 & pump.isAvailable())
+                    {
+                        vehicle = vehicles[0]; // get first vehicle
+                        vehicles.RemoveAt(0); // remove vehicles from queue
+
+                        // assign it to the pump
+                        pump.assignVehicle(vehicle);
+                    } else if(!pump.isAvailable() & j > 0)
+                    {
+                        if (pumps[index - 1].isAvailable())
+                        {
+                            pump = pumps[index - 1];
+                            vehicle = vehicles[0]; // get first vehicle
+                            vehicles.RemoveAt(0); // remove vehicles from queue
+
+                            // assign it to the pump
+                            pump.assignVehicle(vehicle);
+                        }
+                    } else if(!pump.isAvailable() & j == 0)
+                    {
+                        break;
+                    }
+                    if (vehicles.Count == 0) { break; }
+                }
+                if (vehicles.Count == 0) { break; }
+            }
+
+            /*for (int i = 0; i < 9; i++)
             {
                 pump = pumps[i];
 
@@ -90,7 +128,7 @@ namespace PetrolTrulyUnlimited
 
                 if (vehicles.Count == 0) { break; }
 
-            }
+            }*/
         }
 
         public static void storeReceipts(Receipt receipt)
